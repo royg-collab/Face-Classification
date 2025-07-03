@@ -1,7 +1,7 @@
 
-# 🎭 Multi-Model Face Recognition Pipeline (Clean + Distorted)
+#  Multi-Model Face Recognition Pipeline (Clean + Distorted)
 
-## 🧠 Project Objective
+## Project Objective
 
 This project tackles a **multi-class face recognition** challenge under **real-world conditions**, including **distortions** like blur, low light, and occlusion.
 
@@ -12,7 +12,7 @@ The goal is to build a **modular AI system** that can:
 
 ---
 
-## 🗂️ Dataset Structure
+##  Dataset Structure
 
 Each class represents a person, with:
 - One clean/original image
@@ -33,7 +33,7 @@ val/
 
 ---
 
-## 🔍 Approach Overview
+##  Approach Overview
 
 We designed a **3-model inference pipeline** that mimics human visual processing:
 
@@ -64,7 +64,7 @@ We designed a **3-model inference pipeline** that mimics human visual processing
 
 ---
 
-## 🧱 Model Summary
+##  Model Summary
 
 | Model ID | Purpose                   | Architecture             | Training Data |
 |----------|---------------------------|---------------------------|---------------|
@@ -76,9 +76,9 @@ All models are trained separately and saved, then unified in a prediction pipeli
 
 ---
 
-## 📈 Evaluation Results
+##  Evaluation Results
 
-### 🔍 Validation Accuracy
+### Validation Accuracy
 
 | Model        | Accuracy (%) |
 |--------------|--------------|
@@ -86,15 +86,15 @@ All models are trained separately and saved, then unified in a prediction pipeli
 | Model 2      | ~24%         |
 | Model 3      | ~3%          |
 
-> ⚠️ Model 3’s low accuracy reflects real-world difficulty in face recognition under severe distortions.
+>  Model 3’s low accuracy reflects real-world difficulty in face recognition under severe distortions.
 
-### 🧾 Classification Report + Confusion Matrix
-- 📄 `classification_report.txt`
-- 📊 `confusion_matrix.png`
+###  Classification Report + Confusion Matrix
+-  `classification_report.txt`
+-  `confusion_matrix.png`
 
 ---
 
-## 💾 Saved Model Pipeline
+##  Saved Model Pipeline
 
 `multi_model_face_recognizer.pt` includes:
 - Model 1: Distortion detector
@@ -104,7 +104,7 @@ All models are trained separately and saved, then unified in a prediction pipeli
 
 ---
 
-## 🛠️ Setup Instructions
+##  Setup Instructions
 
 ```bash
 pip install torch torchvision scikit-learn matplotlib seaborn
@@ -112,7 +112,7 @@ pip install torch torchvision scikit-learn matplotlib seaborn
 
 ---
 
-## 🚀 Inference Demo
+##  Inference Demo
 
 ```python
 import torch
@@ -124,7 +124,7 @@ print("Predicted Class:", result)
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 | File                             | Description                              |
 |----------------------------------|------------------------------------------|
@@ -136,7 +136,7 @@ print("Predicted Class:", result)
 
 ---
 
-## 🧠 Key Learnings
+##  Key Learnings
 
 - Modular pipelines increase flexibility and robustness
 - Distortion-aware models perform better than a single mixed model
@@ -144,7 +144,7 @@ print("Predicted Class:", result)
 
 ---
 
-## 👨‍💻 Author
-**ROY G** — Lead model designer, data pipeline engineer, evaluator.
+##  Author
+**Gargi Roy** — Lead model designer, data pipeline engineer, evaluator.
 
 ---
