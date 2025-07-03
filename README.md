@@ -82,7 +82,7 @@ All models are trained separately and saved, then unified in a prediction pipeli
 
 | Model        | Accuracy (%) |
 |--------------|--------------|
-| Model 1      | ~96%         |
+| Model 1      | ~99.9%       |
 | Model 2      | ~24%         |
 | Model 3      | ~3%          |
 
