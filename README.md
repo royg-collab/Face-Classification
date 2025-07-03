@@ -82,11 +82,10 @@ All models are trained separately and saved, then unified in a prediction pipeli
 
 | Model        | Accuracy (%) |
 |--------------|--------------|
-| Model 1      | ~99.9%       |
-| Model 2      | ~24%         |
-| Model 3      | ~3%          |
+| Model 1      | ~99.90%      |
+| Model 2      | ~99.84%      |
+| Model 3      | ~90.25%      |
 
->  Model 3’s low accuracy reflects real-world difficulty in face recognition under severe distortions.
 
 ###  Classification Report + Confusion Matrix
 -  `classification_report.txt`
