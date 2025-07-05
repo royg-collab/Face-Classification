@@ -161,7 +161,7 @@ Your test_images/ folder should contain files named like:
 002_frontal_blur.jpg
 001_frontal_rainy.jpg
 ```
-*Each file is matched to a label in true_labels inside test.py
+Each file is matched to a label in true_labels inside test.py
 ---
 ---
 ## File Usage Guide
@@ -191,4 +191,12 @@ Your test_images/ folder should contain files named like:
 ##  Author
 **Gargi Roy** .
 
+
+## 📜 License
+
+MIT License
+
+---
+
+For questions, suggestions, or issues, please contact \[chattg10@gmail.com].
 ---
