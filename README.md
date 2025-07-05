@@ -76,20 +76,36 @@ All models are trained separately and saved, then unified in a prediction pipeli
 
 ---
 
+## UnifiedFaceAnalyzer
+
+A 3-stage deep learning pipeline for face recognition across both clean and distorted face images using MobileNetV3 in PyTorch.
+
+
+- This project combines three specialized models:
+- Distortion Classifier – Identifies whether an input face is clean or distorted.
+- Clean Face Recognizer – Recognizes identities from clean face images.
+- Distorted Face Recognizer – Recognizes identities from distorted face images (e.g., foggy, blurry, rainy).
+These models are unified into a single class: UnifiedFaceAnalyzer.
+
+✅ The .pt file (UnifiedFaceAnalyzer.pt) stores the model weights only. To use it, the architecture must be defined in unified_face_analyzer.py.
+
+✅ Commit both .pt and .py files to GitHub for full reproducibility.
+
 ##  Evaluation Results
-
-### Validation Accuracy
-
-| Model        | Accuracy (%) |
-|--------------|--------------|
-| Model 1      | ~99.90%      |
-| Model 2      | ~99.84%      |
-| Model 3      | ~90.25%      |
-
-
 ###  Classification Report + Confusion Matrix
--  `classification_report.txt`
+```
+Classification Report:
+              precision    recall  f1-score   support
+
+ 001_frontal       1.00      1.00      1.00         3
+ 002_frontal       1.00      1.00      1.00         1
+
+    accuracy                           1.00         4
+   macro avg       1.00      1.00      1.00         4
+weighted avg       1.00      1.00      1.00         4
+```
 -  `confusion_matrix.png`
+![image](https://github.com/user-attachments/assets/818bfd73-792e-49b2-99bb-dc5cd59ad9d5)
 
 ---
 
@@ -109,30 +125,59 @@ All models are trained separately and saved, then unified in a prediction pipeli
 pip install torch torchvision scikit-learn matplotlib seaborn
 ```
 
----
-
-##  Inference Demo
-
-```python
-import torch
-model = torch.load("multi_model_face_recognizer.pt")
-model.eval()
-result = model.predict_image("/path/to/image.jpg")
-print("Predicted Class:", result)
-```
-
----
-
 ##  Repository Structure
-
+```
 | File                             | Description                              |
 |----------------------------------|------------------------------------------|
-| `multi_model_face_recognizer.pt` | Full pipeline model                      |
-| `test_inference.py`              | Test evaluation script                   |
-| `README.md`                      | Project overview                         |
-| `classification_report.txt`      | Precision, recall, F1 metrics            |
-| `confusion_matrix.png`           | Visual confusion matrix                  |
+├── main.py                            # Combine models into one pipeline     |
+├── test.py                            # Evaluate predictions on test images  |
+├── unified_face_analyzer.py          # Core unified 3-stage model class      |
+├── UnifiedFaceAnalyzer.pt            # Saved unified model weights (optional)|
+├── model1_distortion_classifier.pth  # Clean vs Distorted classifier         |
+├── clean_mobilenetv3_face_recognition.pth  # Clean face recognizer           |
+├── mobilenetv3_model_distorted_877.pth     # Distorted face recognizer       |
+├── class_to_idx_clean.json           # Label map for clean images            |
+├── class_to_idx_877.json             # Label map for distorted images        |
+└── test_images/                      # Folder of test images                 |
+```
+---
+## Testing
 
+A separate test.py script is provided that:
+*Accepts a test dataset path (flat folder of images)
+*Loads the pretrained unified model
+*Outputs classification report and confusion matrix
+```
+python test.py \
+    --model_path UnifiedFaceAnalyzer.pt \
+    --test_path /path/to/test_images
+```
+---
+## Test Image Format
+Your test_images/ folder should contain files named like:
+```
+001_frontal_clear.jpg
+001_frontal_foggy.jpg
+002_frontal_blur.jpg
+001_frontal_rainy.jpg
+```
+*Each file is matched to a label in true_labels inside test.py
+---
+---
+## File Usage Guide
+```
+| File                                     | Purpose                                                            | How to Use                                                                                                    |
+| ---------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| `UnifiedFaceAnalyzer.pt`                 | ✅ Full saved weights of the unified 3-model pipeline               | Load using `torch.load()` **after** importing the `UnifiedFaceAnalyzer` class from `unified_face_analyzer.py` |
+| `unified_face_analyzer.py`               | 🧠 Contains the full model architecture                            | Import the `UnifiedFaceAnalyzer` class: `from unified_face_analyzer import UnifiedFaceAnalyzer`               |
+| `test.py`                                | 🧪 Script to evaluate images using the full pipeline               | Run `python test.py` to copy test images and print classification report                                      |
+| `main.py`                                | 🛠 (Optional) Builds and optionally saves a unified model instance | Can be used to combine and save `.pt` model                                                                   |
+| `class_to_idx_clean.json`                | 🔠 Class-to-index mapping for clean faces                          | Required by `UnifiedFaceAnalyzer` to decode predictions                                                       |
+| `class_to_idx_877.json`                  | 🔠 Class-to-index mapping for distorted faces                      | Required by `UnifiedFaceAnalyzer` to decode predictions                                                       |
+| `mobilenetv3_model_distorted_877.pth`    | 🎭 Distorted face recognizer weights                               | Used internally by `UnifiedFaceAnalyzer`                                                                      |
+| `clean_mobilenetv3_face_recognition.pth` | 😊 Clean face recognizer weights                                   | Used internally by `UnifiedFaceAnalyzer`                                                                      |
+| `model1_distortion_classifier.pth`       | 🧪 Distortion (clean vs. distorted) classifier weights             | Used internally by `UnifiedFaceAnalyzer`
+```
 ---
 
 ##  Key Learnings
@@ -144,6 +189,6 @@ print("Predicted Class:", result)
 ---
 
 ##  Author
-**Gargi Roy** — Lead model designer, data pipeline engineer, evaluator.
+**Gargi Roy** .
 
 ---
