@@ -81,7 +81,7 @@ All models are trained separately and saved, then unified in a prediction pipeli
 A 3-stage deep learning pipeline for face recognition across both clean and distorted face images using MobileNetV3 in PyTorch.
 
 
-- This project combines three specialized models:
+*This combines three specialized models:
 - Distortion Classifier – Identifies whether an input face is clean or distorted.
 - Clean Face Recognizer – Recognizes identities from clean face images.
 - Distorted Face Recognizer – Recognizes identities from distorted face images (e.g., foggy, blurry, rainy).
